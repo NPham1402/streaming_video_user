@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	Random rnd = new Random();
+
+for(int j = 0; j < 4; j++)
+{
+    Console.WriteLine(); // returns random integers >= 10 and < 19
+}
+}
+<div class="page-single">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="topbar-filter fw">
+					<p>Found <span>@ViewBag.count movies</span> in total</p>
+					<label>Sort by:</label>
+					<select>
+						<option value="popularity">Popularity Descending</option>
+						<option value="popularity">Popularity Ascending</option>
+						<option value="rating">Rating Descending</option>
+						<option value="rating">Rating Ascending</option>
+						<option value="date">Release date Descending</option>
+						<option value="date">Release date Ascending</option>
+					</select>
+					<a href="movielist.html" class="list"><i class="ion-ios-list-outline "></i></a>
+					<a  href="moviegridfw.html" class="grid"><i class="ion-grid active"></i></a>
+				</div>
+				  <div class="flex-wrap-movielist mv-grid-fw">
+				@foreach (var item in ViewBag.film) {
+    
+						<div class="movie-item-style-2 movie-item-style-1">
+							<img src=@item.UrlImg alt="">
+							<div class="hvr-inner">
+	            				<a  asp-action="Detail" asp-route-id="@item.IdFilm"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+	            			</div>
+							<div class="mv-item-infor">
+								<h6><a href="#">@item.Name</a></h6>
+								<p class="rate"><i class="ion-android-star"></i><span>@rnd.Next(5, 10)</span> /10</p>
+							</div>
+						
+
+						
+				</div>		
+				
+				}
+						</div>					
+
+				<div class="topbar-filter">
+					<label>Movies per page:</label>
+					<select>
+						<option value="range">20 Movies</option>
+						<option value="saab">10 Movies</option>
+					</select>
+					
+					<div class="pagination2">
+						<span>Page 1 of 2:</span>
+						<a class="active" href="#">1</a>
+						<a href="#">2</a>
+						<a href="#">3</a>
+						<a href="#">...</a>
+						<a href="#">78</a>
+						<a href="#">79</a>
+						<a href="#"><i class="ion-arrow-right-b"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
