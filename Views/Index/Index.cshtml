@@ -9,6 +9,7 @@ for(int j = 0; j < 4; j++)
     Console.WriteLine(); // returns random integers >= 10 and < 19
 }
 }
+
 <div class="page-single">
 	<div class="container">
 		<div class="row">
@@ -29,7 +30,6 @@ for(int j = 0; j < 4; j++)
 				</div>
 				  <div class="flex-wrap-movielist mv-grid-fw">
 				@foreach (var item in ViewBag.film) {
-    
 						<div class="movie-item-style-2 movie-item-style-1">
 							<img src=@item.UrlImg alt="">
 							<div class="hvr-inner">
@@ -39,9 +39,6 @@ for(int j = 0; j < 4; j++)
 								<h6><a href="#">@item.Name</a></h6>
 								<p class="rate"><i class="ion-android-star"></i><span>@rnd.Next(5, 10)</span> /10</p>
 							</div>
-						
-
-						
 				</div>		
 				
 				}

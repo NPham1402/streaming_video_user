@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Project\\ASP\\api\\streaming_video_user\\streaming_video_user.csproj": {}
+    "F:\\College_File\\WNC\\LT\\streaming_video_user\\streaming_video_user.csproj": {}
   },
   "projects": {
-    "G:\\Project\\ASP\\api\\streaming_video_user\\streaming_video_user.csproj": {
+    "F:\\College_File\\WNC\\LT\\streaming_video_user\\streaming_video_user.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Project\\ASP\\api\\streaming_video_user\\streaming_video_user.csproj",
+        "projectUniqueName": "F:\\College_File\\WNC\\LT\\streaming_video_user\\streaming_video_user.csproj",
         "projectName": "streaming_video_user",
-        "projectPath": "G:\\Project\\ASP\\api\\streaming_video_user\\streaming_video_user.csproj",
-        "packagesPath": "C:\\Users\\09382\\.nuget\\packages\\",
-        "outputPath": "G:\\Project\\ASP\\api\\streaming_video_user\\obj\\",
+        "projectPath": "F:\\College_File\\WNC\\LT\\streaming_video_user\\streaming_video_user.csproj",
+        "packagesPath": "C:\\Users\\Fireb\\.nuget\\packages\\",
+        "outputPath": "F:\\College_File\\WNC\\LT\\streaming_video_user\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\09382\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Fireb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,6 +53,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.4, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             }
           },
           "imports": [
@@ -77,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

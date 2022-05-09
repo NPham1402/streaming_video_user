@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+
 }
   <script src="~/js/custom.js" asp-append-version="true"></script>
   <script src="~/js/plugins.js" asp-append-version="true"></script>
@@ -23,7 +24,7 @@
 	<div class="container">
 		<div class="row ipad-width2">
 			<div class="col-md-4 col-sm-12 col-xs-12">
-				<div class="movie-img sticky-sb">
+				<div class="movie-img">
 					<img src=@ViewBag.Film.UrlImg alt="">
 					<div class="movie-btn">	
 						<div class="btn-transform transform-vertical red">
@@ -151,7 +152,7 @@
 					       	 			<div class="title-hd-sm">
 											<h4>Directors & Credit Writers</h4>
 										</div>
-
+										
 										<div class="mvcast-item">											
 													@foreach(var item in ViewBag.director){
 												<div class="cast-it">
