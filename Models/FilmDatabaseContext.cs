@@ -56,7 +56,7 @@ namespace streaming_video_user.Models
                     .HasColumnType("text")
                     .HasColumnName("DESCRIPTION");
 
-                entity.Property(e => e.NameActor)
+                entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("NAME_ACTOR");

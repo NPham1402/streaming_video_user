@@ -1,9 +1,33 @@
-﻿@*
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+<style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+</style>
   <script src="~/js/custom.js" asp-append-version="true"></script>
+  <script>
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
   <script src="~/js/plugins.js" asp-append-version="true"></script>
   <script src="~/js/plugins.js" asp-append-version="true"></script>
 <div class="hero mv-single-hero">
@@ -19,6 +43,13 @@
 		</div>
 	</div>
 </div>
+<div id="overlay" onclick="off()">
+<video controls>
+  <source src="https://firebasestorage.googleapis.com/v0/b/tester-9c0ed.appspot.com/o/635a4db257fca0860c934f10c81cd6e3.mp4?alt=media&token=8c058995-9bcb-4957-86af-4e67574a068d" type="video/mp4">
+  <source src="mov_bbb.ogg" type="video/ogg">
+  Your browser does not support HTML video.
+</video>
+</div>
 <div class="page-single movie-single movie_single">
 	<div class="container">
 		<div class="row ipad-width2">
@@ -31,8 +62,9 @@
 							<div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
 						</div>
 						<div class="btn-transform transform-vertical">
-							<div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i>  Watch Movie</a></div>
-							<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+							<div><a   class="item item-1 yellowbtn"> <i  class="ion-card"></i>  Watch Movie</a></div>
+							
+							<div><a href="#" class="item item-2 yellowbtn"><i onclick="on()" class="ion-card"></i></a></div>
 						</div>
 					</div>
 				</div>
@@ -97,7 +129,7 @@
 												<div class="cast-it">
 													<div class="cast-left">
 														<img src=@item.UrlImg width=40 alt="">
-														<a href="#">@item.Name</a>
+														<a asp-controller="detail" asp-action="Index" asp-route-id=@item.Id>@item.Name</a>
 													</div>
 													<p>Director</p>
 												</div>
@@ -122,7 +154,7 @@
 						            			<p>
 																	@foreach(var item in ViewBag.actor){
 
-											<a href="#">@item.NameActor ,</a>
+											<a href="#">@item.Name ,</a>
 										} </p>
 						            		</div>
 						            		<div class="sb-it">
@@ -174,7 +206,7 @@
 												<div class="cast-it">
 													<div class="cast-left">
 														<img src=@item.UrlImg width=40 alt="">
-														<a href="#">@item.NameActor</a>
+														<a href="#">@item.Name</a>
 													</div>
 													<p>Actor</p>
 												</div>

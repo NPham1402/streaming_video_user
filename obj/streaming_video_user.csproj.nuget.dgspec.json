@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Project\\ASP\\api\\streaming_video_user\\streaming_video_user.csproj": {}
+    "E:\\streaming_video_user\\streaming_video_user.csproj": {}
   },
   "projects": {
-    "G:\\Project\\ASP\\api\\streaming_video_user\\streaming_video_user.csproj": {
+    "E:\\streaming_video_user\\streaming_video_user.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Project\\ASP\\api\\streaming_video_user\\streaming_video_user.csproj",
+        "projectUniqueName": "E:\\streaming_video_user\\streaming_video_user.csproj",
         "projectName": "streaming_video_user",
-        "projectPath": "G:\\Project\\ASP\\api\\streaming_video_user\\streaming_video_user.csproj",
+        "projectPath": "E:\\streaming_video_user\\streaming_video_user.csproj",
         "packagesPath": "C:\\Users\\09382\\.nuget\\packages\\",
-        "outputPath": "G:\\Project\\ASP\\api\\streaming_video_user\\obj\\",
+        "outputPath": "E:\\streaming_video_user\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
