@@ -448,9 +448,7 @@ $(function(){
 	var signupct= $("#signup-content");
 	var loginWrap = $(".login-wrapper");
 	var overlay = $(".overlay");
-	loginWrap.each( function(){
-		$(this).wrap('<div class="overlay"></div>')
-	});
+
 	//pop up for login form
     loginLink.on('click', function(event){
     	event.preventDefault();
@@ -502,7 +500,7 @@ $(function(){
 		var scrollPos = $(window).scrollTop(),
 		header = $('header');
 		//sticky for menu
-		if(scrollPos > 300){
+		if(scrollPos > 0){
 			header.addClass('sticky');
 		}else{
 			header.removeClass('sticky');

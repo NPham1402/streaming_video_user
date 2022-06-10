@@ -16,7 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
-
+.ht-header {
+    position: fixed;
+    top: 0;
+    background-color: black;
+}
 @media print {
     *,
     *:before,

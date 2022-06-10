@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="hero user-hero">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hero-ct">
+					<ul class="breadcumb">
+						<li class="active"><a href="#">Home</a></li>
+						<li> <span class="ion-ios-arrow-right"></span>Profile</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="page-single">
+	<div class="container">
+		<div class="row ipad-width">
+			<div class="col-md-3 col-sm-12 col-xs-12">
+				<div class="user-information">
+					<div class="user-img">
+						<img src="images/uploads/user-img.png" alt="">
+					</div>
+					<div class="user-fav">
+						<p>Account Details</p>
+						<ul>
+							<li  class="active"><a asp-action="Profile" asp-controller="Index">Profile</a></li>
+							<li><a asp-action="FavoriteList" asp-controller="Index">Favorite movies</a></li>
+						</ul>
+					</div>
+					<div class="user-fav">
+						<p>Others</p>
+						<ul>
+							<li><a asp-action="Profile" asp-controller="Index">Change password</a></li>
+							<li><a asp-action="Logout" asp-controller="Index">Log out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9 col-sm-12 col-xs-12">
+				<div class="form-style-1 user-pro" action="#">
+                    <form action="#" class="user">
+                        <h4>01. Profile details</h4>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Full Name</label>
+                                <input type="text" value="@ViewBag.Name" placeholder="Your Full Name" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-it">
+                                <label>Age</label>
+                                <input type="text" value="@ViewBag.Age" placeholder="Your Age">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2">
+                                <input class="submit" type="submit" value="save">
+                            </div>
+                        </div>
+                    </form>
+					 <form action="http://localhost:3001/paymentweb" method="POST">
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_51KysBGC4c4me30BTdO6jARHtsFThCnAVcsxOeu9tumGlrOHf1XstZNJaV4UWPLNxIIx4fB4W3Pb6d1kgsszy8FBw0001H8C0ok"
+                data-amount="10"
+                data-name="Web nâng cao"
+                data-description="10$"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="en"
+                data-label="Pay 10$">
+        </script>
+    </form>
+					<form asp-action="ChangePassword" asp-controller="Index" class="password">
+						<h4>02. Change password</h4>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								<label>Old Password</label>
+								<input type="text" name="OldPassword" placeholder="**********">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								<label>New Password</label>
+								<input type="text" name="NewPassword" placeholder="***************">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-it">
+								<label>Confirm New Password</label>
+								<input type="text" name="ConfirmNewPassword" placeholder="*************** ">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2">
+								<input class="submitPassword" type="submit" value="change">
+							</div>
+						</div>	
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

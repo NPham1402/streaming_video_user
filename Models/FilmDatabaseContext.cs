@@ -33,7 +33,8 @@ namespace streaming_video_user.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-FLFGLMO\\SQLEXPRESS;Initial Catalog=FilmDatabase;Integrated Security=True;");
+                //optionsBuilder.UseSqlServer("Data Source=DESKTOP-FLFGLMO\\SQLEXPRESS;Initial Catalog=FilmDatabase;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-FLFGLMO\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=FilmDatabase");
             }
         }
 
@@ -408,7 +409,7 @@ namespace streaming_video_user.Models
 
             modelBuilder.Entity<UserSecurity>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e=>e.IdUser).IsClustered(false);
 
                 entity.ToTable("USER_SECURITY");
 
@@ -441,8 +442,8 @@ namespace streaming_video_user.Models
             });
 
             OnModelCreatingPartial(modelBuilder);
+         
         }
-
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
