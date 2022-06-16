@@ -1,16 +1,50 @@
-﻿@*
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 
 }
+<style>
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+</style>
   <script src="~/js/custom.js" asp-append-version="true"></script>
+  <script>
+function on() {
+  document.getElementById("overlay").style.display = "blox";
+}
+}
+
+@section  Scripts{
+    <script type="text/javascript">
+        function downloadvideo() {
+            var url = $("#vurl").attr('href');
+            window.location.href = "../Get?url=" + url;
+        }
+    </script>
+}
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
+</script>
   <script src="~/js/plugins.js" asp-append-version="true"></script>
   <script src="~/js/plugins.js" asp-append-version="true"></script>
 <div class="hero mv-single-hero">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12" width=100>
+				<a id="vurl" href=@ViewBag.Film.UrlFilm hidden="true">Play Video</a>
 				<!-- <h1> movie listing - list</h1>
 				<ul class="breadcumb">
 					<li class="active"><a href="#">Home</a></li>
@@ -19,6 +53,13 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div id="overlay" onclick="off()">
+<video controls>
+  <source src="https://firebasestorage.googleapis.com/v0/b/tester-9c0ed.appspot.com/o/635a4db257fca0860c934f10c81cd6e3.mp4?alt=media&token=8c058995-9bcb-4957-86af-4e67574a068d" type="video/mp4">
+  <source src="mov_bbb.ogg" type="video/ogg">
+  Your browser does not support HTML video.
+</video>
 </div>
 <div class="page-single movie-single movie_single">
 	<div class="container">
@@ -29,13 +70,19 @@
 					<div class="movie-btn">	
 						<div class="btn-transform transform-vertical red">
 							<div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Watch Trailer</a></div>
-							<div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+							<div><a href="https://www.youtube.com/watch?v=WJSvlddWvrA" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
 						</div>
 						<div class="btn-transform transform-vertical">
-							<div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i>  Watch Movie</a></div>
-							<div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+							<div><a src=@ViewBag.Film.UrlFilm   class="item item-1 yellowbtn"> <i  class="ion-card"></i>  Watch Movie</a></div>
+						.	
+							<div><a  asp-controller="playfilmController1" asp-action="Index" asp-route-id=@ViewBag.Film.IdFilm class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
 						</div>
-					</div>
+						<br/>
+								<div class="btn-transform ">
+						<button class="item item-1 redbtn" onclick="downloadvideo()" >Download Film</button>
+					
+								</div>
+										</div>
 				</div>
 			</div>
 			<div class="col-md-8 col-sm-12 col-xs-12">
@@ -98,7 +145,7 @@
 												<div class="cast-it">
 													<div class="cast-left">
 														<img src=@item.UrlImg width=40 alt="">
-														<a href="#">@item.Name</a>
+														<a asp-controller="detail" asp-action="Index" asp-route-id=@item.Id>@item.Name</a>
 													</div>
 													<p>Director</p>
 												</div>
@@ -123,7 +170,7 @@
 						            			<p>
 																	@foreach(var item in ViewBag.actor){
 
-											<a href="#">@item.NameActor ,</a>
+											<a href="#">@item.Name ,</a>
 										} </p>
 						            		</div>
 						            		<div class="sb-it">
@@ -175,7 +222,7 @@
 												<div class="cast-it">
 													<div class="cast-left">
 														<img src=@item.UrlImg width=40 alt="">
-														<a href="#">@item.NameActor</a>
+														<a href="#">@item.Name</a>
 													</div>
 													<p>Actor</p>
 												</div>

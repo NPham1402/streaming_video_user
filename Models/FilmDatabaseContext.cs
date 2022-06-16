@@ -34,7 +34,7 @@ namespace streaming_video_user.Models
             if (!optionsBuilder.IsConfigured)
             {
                 //optionsBuilder.UseSqlServer("Data Source=DESKTOP-FLFGLMO\\SQLEXPRESS;Initial Catalog=FilmDatabase;Integrated Security=True;");
-                optionsBuilder.UseSqlServer("Data Source=Desktop-p6811ab; Initial Catalog = FilmDatabase; Integrated Security = True");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-FLFGLMO\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=FilmDatabase");
             }
         }
 
@@ -57,7 +57,7 @@ namespace streaming_video_user.Models
                     .HasColumnType("text")
                     .HasColumnName("DESCRIPTION");
 
-                entity.Property(e => e.NameActor)
+                entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("NAME_ACTOR");

@@ -10,8 +10,32 @@ namespace streaming_video_user.Controllers
         {
             ViewBag.film = context.Films.Select(x => new { x.IdFilm, x.Name, x.UrlImg });
             ViewBag.Count = context.Films.Count();
-            ViewBag.Email = HttpContext.Session.GetString("UserEmail");
+
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
+        {
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ViewBag.film = context.Films.Select(x => new { x.IdFilm, x.Name, x.UrlImg }).Where(s => s.Name.Contains(searchString));
+                ViewBag.Count = context.Films.Where(s => s.Name.Contains(searchString)).Count();
+                return View();
+
+            }
+            return View();
+
+        }
+        public async Task<FileStreamResult> Get(string url)
+        {
+
+            var client = new HttpClient();
+            var stream = await client.GetStreamAsync(url);
+            return new FileStreamResult(stream, "application/octet-stream")
+            {
+                FileDownloadName = "test.mp4",
+                EnableRangeProcessing = true
+            };
         }
         public ActionResult Detail(string id)
         {
@@ -22,21 +46,21 @@ namespace streaming_video_user.Controllers
             var blogs = from d in context.Directors 
                         join dflim in context.DiretorFilms on d.Id equals dflim.Id where dflim.IdFilm==id 
                        
-                        select new { d.Name, d.UrlImg };
+                        select new { d.Name, d.UrlImg,d.Id,d.Description };
             var actor = from d in context.Actors
                         join dflim in context.ActorFilms on d.IdActor equals dflim.IdActor
                         where dflim.IdFilm == id
 
-                        select new { d.NameActor, d.UrlImg };
+                        select new { d.Name, d.UrlImg,d.IdActor, d.Description };
             var gerne = from d in context.Gernes
                         join dflim in context.GerneFilms on d.IdGer equals dflim.IdGer
                         where dflim.IdFilm == id
 
                         select new { d.Name };
             var Film = context.Films.Where(x => x.IdFilm == id).FirstOrDefault();
+            ViewBag.actor = actor;
             ViewBag.Film = Film;
             ViewBag.director = blogs;
-            ViewBag.actor = actor;
             ViewBag.gerne = gerne;
             return View("Detail");
         }

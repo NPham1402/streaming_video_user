@@ -64,6 +64,17 @@
                             </div>
                         </div>
                     </form>
+					 <form action="http://localhost:3001/paymentweb" method="POST">
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_51KysBGC4c4me30BTdO6jARHtsFThCnAVcsxOeu9tumGlrOHf1XstZNJaV4UWPLNxIIx4fB4W3Pb6d1kgsszy8FBw0001H8C0ok"
+                data-amount="10"
+                data-name="Web nâng cao"
+                data-description="10$"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="en"
+                data-label="Pay 10$">
+        </script>
+    </form>
 					<form asp-action="ChangePassword" asp-controller="Index" class="password">
 						<h4>02. Change password</h4>
 						<div class="row">

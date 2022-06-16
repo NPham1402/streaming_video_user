@@ -14,7 +14,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.3" />
+    <PackageReference Include="NewsAPI" Version="0.6.0" />
+    <PackageReference Include="Stripe.net" Version="39.118.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="Syncfusion.Blazor.Core" Version="20.1.0.59" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="20.1.0.59" />
+    <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core.Windows" Version="20.1.0.59" />
   </ItemGroup>
 
 </Project>
