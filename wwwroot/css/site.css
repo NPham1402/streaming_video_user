@@ -6661,7 +6661,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 445px;
+    height: 200px;
 }
 
     .hero .hero-ct {
@@ -6710,7 +6710,7 @@ ul {
 /*movie single hero*/
 .mv-single-hero {
     background: url('../images/uploads/hero-bg.jpg') no-repeat;
-    height: 598px;
+    height: 400px;
 }
 /*series single hero*/
 .sr-single-hero {

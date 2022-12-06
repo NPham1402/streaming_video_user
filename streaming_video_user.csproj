@@ -22,4 +22,9 @@
     <PackageReference Include="Syncfusion.EJ2.PdfViewer.AspNet.Core.Windows" Version="20.1.0.59" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>

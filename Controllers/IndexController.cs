@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using streaming_video_user.Models;
+using System.Net;
+
 namespace streaming_video_user.Controllers
 {
     public class IndexController : Controller
@@ -8,9 +10,12 @@ namespace streaming_video_user.Controllers
         RawSql rawSql= new RawSql();
         public IActionResult Index()
         {
-            ViewBag.film = context.Films.Select(x => new { x.IdFilm, x.Name, x.UrlImg });
+            ViewBag.film = context.Films.Where(x => x.StatusDelete == false).Select(x => new { x.IdFilm, x.Name, x.UrlImg });
             ViewBag.Count = context.Films.Count();
-
+            if (HttpContext.Session.GetString("UserEmail") != null)
+            {
+                ViewBag.Email = HttpContext.Session.GetString("UserEmail");
+            }
             return View();
         }
         [HttpPost]
@@ -37,8 +42,26 @@ namespace streaming_video_user.Controllers
                 EnableRangeProcessing = true
             };
         }
+        
         public ActionResult Detail(string id)
         {
+            Console.Write(id);
+            Console.Write(HttpContext.Session.GetString("UserId"));
+            var data = context.Users.Where(s => s.IdUser==HttpContext.Session.GetString("UserId")).FirstOrDefault();
+            string statusPayment = "0";
+            if (data != null)
+            {
+                if (data.StatusDelete == true)
+                {
+                    statusPayment = "1";
+                    ViewBag.statusPayment = statusPayment;
+                }
+            }
+            var dataLikeFilm = context.LikeFilms.Where(s => s.IdFilm == id && s.IdUser == HttpContext.Session.GetString("UserId")).FirstOrDefault();
+            if (dataLikeFilm != null)
+            {
+                ViewBag.LikeFilm = "true";
+            }
             if (HttpContext.Session.GetString("UserEmail") != null)
             {
                 ViewBag.Email = HttpContext.Session.GetString("UserEmail");
@@ -62,8 +85,11 @@ namespace streaming_video_user.Controllers
             ViewBag.Film = Film;
             ViewBag.director = blogs;
             ViewBag.gerne = gerne;
-            return View("Detail");
+            if(id!=null)
+                ViewBag.IdFilm= id;
+            return View();
         }
+
         [HttpPost]
         public IActionResult Login(string Email,string Password)
         {
@@ -77,22 +103,20 @@ namespace streaming_video_user.Controllers
                     ViewBag.Email=data.Email;
                     ViewBag.film = context.Films.Select(x => new { x.IdFilm, x.Name, x.UrlImg });
                     ViewBag.Count = context.Films.Count();
-                    return View("Index",new UserSecurity { Email=HttpContext.Session.GetString("UserEmail")});
+                    return RedirectToAction("Index");
                 }
             }
             return RedirectToAction("Index");
         }
         public IActionResult Profile()
         {
-            Console.WriteLine(HttpContext.Session.GetString("UserEmail"));
             if (HttpContext.Session.GetString("UserEmail") != null)
             {
                 ViewBag.Email = HttpContext.Session.GetString("UserEmail"); 
                 string FullName="aa";
                 string Age="0";
-               
+                string StatusPayment = "0";
                 var DataId = context.UserSecurities.Where(s => s.Email == HttpContext.Session.GetString("UserEmail")).FirstOrDefault();
-               
                 if (DataId != null)
                 {
                     var UserInfo = context.Users.Where(s => s.IdUser == DataId.IdUser).FirstOrDefault();
@@ -100,23 +124,51 @@ namespace streaming_video_user.Controllers
                     {
                         FullName = UserInfo.Name;
                         Age = UserInfo.Age.ToString();
+                        if (UserInfo.StatusDelete == true)
+                        {
+                            StatusPayment = "1"; 
+                            ViewBag.StatusPayment=StatusPayment;
+                        }
                     }
                 }
                 ViewBag.Name = FullName;
                 ViewBag.Age = Age;
+                ViewBag.UserId = HttpContext.Session.GetString("UserId");
                 return View() ;
             }
             return RedirectToAction("Index");
         }
-        //public ActionResult Profile()
-        //{
-        //    return View();
-        //}
+
+        [HttpPost]
+        public IActionResult ChangeInfo(string name,string age)
+        {
+            int Age = Convert.ToInt32(age);
+            var data = context.Users.Where(s => s.IdUser == HttpContext.Session.GetString("UserId")).FirstOrDefault();
+            if (data != null)
+            {
+                data.Name= name;
+                data.Age = (short?)Age;
+                context.Entry(data).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Profile");
+        }
         public  IActionResult FavoriteList()
         {
             if (HttpContext.Session.GetString("UserEmail") != null)
             {
                 ViewBag.Email = HttpContext.Session.GetString("UserEmail");
+
+                var dataFilm=context.LikeFilms.Where(s => s.IdUser== HttpContext.Session.GetString("UserId")).ToList();
+                List<Film> FilmDetail =new List<Film>();
+                for(int i = 0; i < dataFilm.Count; i++)
+                {
+                    Film film = context.Films.Where(s=>s.IdFilm== dataFilm[i].IdFilm).First();
+                    Console.Write(dataFilm[i].IdFilm);
+                    FilmDetail.Add(film);
+                }
+
+                ViewBag.LikeFilm = FilmDetail;
                 return View();
             }
             return RedirectToAction("Index"); ;
@@ -125,6 +177,30 @@ namespace streaming_video_user.Controllers
         {
             HttpContext.Session.Remove("UserId");
             HttpContext.Session.Remove("UserEmail");
+            return RedirectToAction("Index");
+        }
+        public IActionResult RemoveFromFavorite(string id)
+        {
+            LikeFilm film = new LikeFilm();
+            film.IdFilm = id;
+            film.IdUser = HttpContext.Session.GetString("UserId");
+            var dataFilm = context.LikeFilms.Where(s => s.IdFilm == id && s.IdUser==film.IdUser).First();
+            context.LikeFilms.Attach(dataFilm);
+            context.LikeFilms.Remove(dataFilm);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult AppendFavorite(string id)
+        {
+            if (HttpContext.Session.GetString("UserId") != null)
+            {
+                LikeFilm film = new LikeFilm();
+                film.IdUserFilm = " ";
+                film.IdFilm = id;
+                film.IdUser = HttpContext.Session.GetString("UserId");
+                context.LikeFilms.Add(film);
+                context.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
         [HttpPost]
@@ -173,6 +249,21 @@ namespace streaming_video_user.Controllers
             }
             ViewBag.MessagePasswordFailed = "Old password was wrong";
             return RedirectToAction("Profile");
+        }
+        [HttpPost]
+        public IActionResult Payment()
+        {
+            {
+                var data = context.Users.Where(s => s.IdUser == HttpContext.Session.GetString("UserId")).FirstOrDefault();
+                if (data != null)
+                {
+                    data.StatusDelete= true;
+                    context.Entry(data).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+                    return RedirectToAction("Profile");
+                }
+                return RedirectToAction("Profile");
+            }
         }
     }
 }

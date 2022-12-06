@@ -4,7 +4,7 @@
 @{
 }
 <
-<div class="page-single">
+<div class="page-single" style="padding-top:120px">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9 col-sm-12 col-xs-12">
@@ -71,21 +71,26 @@
 		</div>
 	</div>
 </div>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8137260644926327"
-     crossorigin="anonymous"></script>
-<!-- quang cáo đầu -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8137260644926327"
-     data-ad-slot="7357721392"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-8137260644926327"
-     data-ad-slot="6541982100"></ins>
+@{
+    if (ViewBag.StatusPayment == "0")
+    {
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8137260644926327"
+            crossorigin="anonymous"></script>
+        <!-- quang cáo đầu -->
+        <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-8137260644926327"
+         data-ad-slot="7357721392"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-8137260644926327"
+         data-ad-slot="6541982100"></ins>
+    }
+}

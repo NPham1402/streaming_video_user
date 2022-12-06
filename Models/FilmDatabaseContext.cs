@@ -34,7 +34,7 @@ namespace streaming_video_user.Models
             if (!optionsBuilder.IsConfigured)
             {
                 //optionsBuilder.UseSqlServer("Data Source=DESKTOP-FLFGLMO\\SQLEXPRESS;Initial Catalog=FilmDatabase;Integrated Security=True;");
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-FLFGLMO\\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=FilmDatabase");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-P6811AB;Integrated Security=SSPI;Initial Catalog=FilmDatabase");
             }
         }
 
@@ -349,13 +349,20 @@ namespace streaming_video_user.Models
 
             modelBuilder.Entity<LikeFilm>(entity =>
             {
-                entity.HasNoKey();
+
+                entity.HasKey(e=>e.IdUserFilm).IsClustered(false);
 
                 entity.ToTable("LIKE_FILM");
 
                 entity.HasIndex(e => e.IdUser, "RELATIONSHIP_11_FK");
 
                 entity.HasIndex(e => e.IdFilm, "RELATIONSHIP_12_FK");
+
+                entity.Property(e => e.IdUserFilm)
+                   .HasMaxLength(8)
+                   .IsUnicode(false)
+                   .HasColumnName("ID_USER_FILM")
+                   .IsFixedLength();
 
                 entity.Property(e => e.IdFilm)
                     .HasMaxLength(8)

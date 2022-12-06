@@ -18,8 +18,6 @@ namespace streaming_video_user.Controllers
                 ViewBag.data = actor;
                 ViewBag.Film = Film;
                 ViewData["nghenghiep"] = "Actor";
-
-
             }
             else
             {
