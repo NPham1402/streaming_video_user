@@ -3,7 +3,11 @@ using System.Collections.Generic;
 
 namespace streaming_video_user.Models
 {
-    public partial class Film
+    public abstract class FilmAbstract
+    {
+
+    }
+    public partial class Film:FilmAbstract
     {
         public string IdFilm { get; set; } = null!;
         public string? IdAdmin { get; set; }
@@ -15,7 +19,6 @@ namespace streaming_video_user.Models
         public string? YearPublic { get; set; }
         public string? AgeLimit { get; set; }
         public bool? StatusDelete { get; set; }
-
         public virtual Admin? IdAdminNavigation { get; set; }
     }
 }

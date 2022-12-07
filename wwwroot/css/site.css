@@ -8225,7 +8225,7 @@ p.ceb-single {
     font-weight: bold;
     text-transform: uppercase;
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
 }
 
 @media (max-width: 767px) {
@@ -48456,4 +48456,8 @@ html.ios {
 
 .slick-arrow.slick-hidden {
     display: none;
+}
+.block-input{
+    height:60px;
+    margin-bottom:30px;
 }

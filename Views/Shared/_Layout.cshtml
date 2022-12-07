@@ -88,6 +88,7 @@
                         Email:
                     </label> 
                     <input type="text" asp-for="Email" placeholder="Your Email" required="required" />
+
                 </div>
                 <div class="row">
                     <label for="password">
@@ -116,25 +117,23 @@
             <a href="#" class="close">x</a>
             <h3>sign up</h3>
             <form method="post" asp-action="Register" asp-controller="Index">
-                <div class="row">
-                    <label for="username-2">
-                        Username: 
-                    </label>   
+                <div class="row block-input">
+                        <label for="username-2">Username: </label>   
                     <input type="text" name="Username" id="username-2" placeholder="User Name" required="required" />
                 </div>
-                <div class="row">
+                <div class="row block-input">
                     <label for="email-2">
                         your email:   
                     </label> 
                     <input type="email" name="Email" id="email-2" placeholder="example@gmail.com" required="required" />
                 </div>
-                <div class="row">
+                <div class="row block-input">
                     <label for="password-2">
                         Password: 
                     </label>   
                     <input type="password" name="Password" id="password-2" placeholder="" required="required" />
                 </div>
-                <div class="row">
+                <div class="row block-input">
                     <label for="repassword-2">
                         re-type Password:
                     </label> 

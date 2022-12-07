@@ -4,14 +4,15 @@ namespace streaming_video_user.Controllers
 {
     public class playfilmController1 : Controller
     {
-        FilmDatabaseContext context = new FilmDatabaseContext();
+        
         public IActionResult Index(string id)
         {
-            var data=context.Films.Where(x => x.IdFilm == id).FirstOrDefault();
+           
+            VideoReceiver videoReceiver = new ConcreteVideoReceiver();
+            var data =videoReceiver.GetFilmObject(id);
             if (data != null)
             {
                 ViewBag.MovieName = data.Name;
-                
             }
             if (HttpContext.Session.GetString("UserEmail") != null)
             {
@@ -19,5 +20,19 @@ namespace streaming_video_user.Controllers
             }
             return View();
         }
+    }
+    abstract class VideoReceiver
+    {
+        public abstract Film GetFilmObject(string id);
+    }
+    class ConcreteVideoReceiver:VideoReceiver
+    {
+        FilmDatabaseContext context = new FilmDatabaseContext();
+        public override Film GetFilmObject(string id)
+        {
+            var data = context.Films.Where(x => x.IdFilm == id).FirstOrDefault();
+            return (Film)data;  
+        }
+
     }
 }
